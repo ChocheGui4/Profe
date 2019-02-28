@@ -13,10 +13,10 @@
              
             if($count == 0){
                   
-                  //echo "<scrip>alert('Nooooooooooo Se encontro')</script>";    
+                  echo "<scrip>alert('Nooooooooooo Se encontro')</script>";    
 
             }else{
-                  //echo "<scrip>alert('Se encontro')</script>";    
+                  echo "<scrip>alert('Se encontro')</script>";    
                   echo "<script>window.location.href = 'index.html'</script>";
                   /*while($row=mysqli_fetch_array($sql)){
                         $id = $row['id'];
