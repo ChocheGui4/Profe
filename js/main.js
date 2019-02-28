@@ -1,4 +1,36 @@
 $(document).ready(function(){  
+  $('#Ingresar').click(function(){
+    var texto1, texto2;
+    texto1=$("#Email").val();
+    texto2=$("#Password").val();
+    
+    
+                                                                 
+    //hace la búsqueda
+                                                                        
+    $.ajax({
+          type: "POST",
+          url: "select.php",
+          data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
+          dataType: "html",
+          beforeSend: function(){
+                //imagen de carga
+                //$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
+          },
+          error: function(){
+                alert("error petición ajax");
+          },
+          success: function(data){   
+                
+                $("#resultado").empty();
+                $("#resultado").append(data);
+                
+                                                   
+          }
+    });
+                                                                            
+                                                                     
+  });
   /*$('#Ingresar').on('click',function(){
     alert("Hola mundo 1");
   });*/
@@ -6,7 +38,7 @@ $(document).ready(function(){
     var texto1, texto2, comp1="Jose", comp2="Joanlove";
     texto1=$("#Email").val();
     texto2=$("#Password").val();
-    //alert(texto1+texto2);
+    
     if(texto1==""| texto2==""){
       modal("Atención","Llene los datos correspondientes y no deje ninguno vacío","#F50768","img/warning.ico");
     }else{
@@ -75,34 +107,5 @@ $(document).ready(function(){
         
                                                                                                     
         //comprobamos si se pulsa una tecla
-        $('#Ingresar').click(function(){
-                                     
-              //obtenemos el texto introducido en el campo de búsqueda
-              val1 = $("#Email").val();
-              val2 = $("#Password").val();
-              
-                                                                           
-              //hace la búsqueda
-                                                                                  
-              $.ajax({
-                    type: "POST",
-                    url: "select.php",
-                    data: $("#formulario").serialize(),
-                    dataType: "html",
-                    beforeSend: function(){
-                          //imagen de carga
-                          $("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-                    },
-                    error: function(){
-                          alert("error petición ajax");
-                    },
-                    success: function(data){                                                    
-                          $("#resultado").empty();
-                          $("#resultado").append(data);
-                                                             
-                    }
-              });
-                                                                                  
-                                                                           
-        });
+  
 });
