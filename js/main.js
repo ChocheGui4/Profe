@@ -7,25 +7,38 @@ $(document).ready(function(){
     
                                                                  
     //hace la búsqueda
-                                                                        
+    
     $.ajax({
+
           type: "POST",
           url: "select.php",
           data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
-          dataType: "html",
+          dataType: "json",
           beforeSend: function(){
                 //imagen de carga
                 //$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
           },
           error: function(){
-                alert("error petición ajax");
+            alert("error petición ajax");
           },
           success: function(data){   
-                
-                $("#resultado").empty();
-                $("#resultado").append(data);
-                
-                                                   
+            //alert(data);
+            if(data.status == "ok"){
+
+              $("#titulo").text("Bienvenido");
+              $("#titulo").css("text-align","center");
+              $("#texto").text("Su consulta ha sido exitosa");
+              $("#titlecontent").css("color", "#55C409");
+              $("#miimagen").attr("src","img/success.ico");
+              $("#logoutModal").modal();
+              setTimeout(function() {
+              $('#logoutModal').modal('hide');
+              window.location.href = "index.html"
+              }, 3000);  
+            }
+            console.log(data.result.Nombre);
+            $("#resultado").empty();
+            $("#resultado").text(data.result.Nombre);
           }
     });
                                                                             
