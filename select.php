@@ -5,38 +5,9 @@
       $contra  = $_POST['pass'];
       
             
-      if($usuario==""| $contra==""){
+      
+      if(isset($usuario) && !empty($usuario) && isset($contra) && !empty($contra)) {
 
-            echo "Los campos están vacíos";
-          }else{
-            if($usuario=="Jose"){
-              if($contra=="12345"){
-                //alert("Ingresar: Aceptado");
-                  echo "Esta bien";
-                  echo "<table border='2'";
-                  echo "<tr>";
-                  echo "<th>Mensaje</th>";
-                  echo "<th>Nuevo</th>";
-                  echo "</tr";
-                  echo "<tr>";
-                  echo "<td>";
-                  echo "Hola soy un mensaje";
-                  echo "</td>";
-                  echo "<td>";
-                  echo "Jose";
-                  echo "</td>";
-                  echo "</tr>";
-                  echo "</table";
-              }else{
-                echo "Contrasenia mala";
-              }
-              
-            }else{
-
-                  echo "Usuario malo";
-            }
-          }
-      /*if(isset($usuario) && !empty($usuario) && isset($contra) && !empty($contra)) {
             $sql = mysqli_query($conn,"SELECT * FROM usuarios WHERE usuario = '$usuario' AND pass = '$contra' ");
             $data = array();
             
@@ -64,8 +35,8 @@
                         $pass = $row['pass'];
                          
                         echo "<scrip>alert('Se encontró')</script>";    
-                  }
-            }*/
+                  }*/
+            }
       
-       
+      }
 ?>

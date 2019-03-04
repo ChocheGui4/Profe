@@ -50,17 +50,21 @@ $(document).ready(function(){
           type: "POST",
           url: "select.php",
           data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
-          dataType: "html",
+          dataType: "json",
           error: function(data){
             alert("error petición ajax");
           },
           success: function(data){   
             //alert(data);
-            console.log(data);
             
-            $("#poner").append(data);
-            //$("#resultado").empty();
-            //$("#resultado").text(data);
+            if(data.status=='ok'){
+              console.log(data);
+            }
+
+            
+            //$("#poner").append(data);
+            $("#resultado").empty();
+            $("#resultado").text(data);
           }
     });
                                                                             
