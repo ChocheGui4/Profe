@@ -56,9 +56,11 @@ $(document).ready(function(){
           },
           success: function(data){   
             //alert(data);
-            
+            console.log(data);
             if(data.status=='ok'){
               console.log(data);
+            }else{
+              data="No se encontró";
             }
 
             
