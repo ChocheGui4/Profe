@@ -15,10 +15,10 @@ $(document).ready(function(){
 
           type: "POST",
           url: "insertar.php",
-          data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
+          data: $("#for1").serialize(),/*"correo="+texto1+"pass="+texto2,*/
           dataType: "json",
           error: function(){
-            alert("error petición ajax");
+            alert("error petición ajax insertar");
           },
           success: function(data){   
             //alert(data);
@@ -61,7 +61,7 @@ $(document).ready(function(){
                 //$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
           },
           error: function(){
-            alert("error petición ajax");
+            alert("error petición ajax formulario");
           },
           success: function(data){   
             //alert(data);

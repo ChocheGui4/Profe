@@ -8,7 +8,7 @@
       
       
       
-      if(isset($nombre) && !empty($nombre) && isset($usuario) && !empty($usuario) isset($contra) && !empty($contra)) {
+      if(isset($nombre) && !empty($nombre) && isset($usuario) && !empty($usuario) && isset($contra) && !empty($contra)) {
             $sql = mysqli_query($conn,"INSERT INTO usuarios(Nombre,usuario,pass) VALUES ('$nombre','$usuario','$contra')");
             $data = array();
             
