@@ -14,7 +14,11 @@
              
             if($count == 0){
                   
-                  echo "<scrip>alert('Nooooooooooo Se encontro')</script>";    
+                  
+                  
+                  $data['status'] = 'no';
+                  $data['result'] = $userData;
+                  echo json_encode($data);
 
             }else{
                   

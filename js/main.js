@@ -26,7 +26,7 @@ $(document).ready(function(){
         error: function(data)
           {
             alert ("Error");
-          }                         }
+          }
       });
   });
   //Fin Código del profe
@@ -73,9 +73,9 @@ $(document).ready(function(){
               window.location.href = "index.html"
               }, 3000);  
             }
-            console.log(data.result.Nombre);
+            console.log(data);
             $("#resultado").empty();
-            $("#resultado").text(data.result.Nombre);
+            $("#resultado").text(data);
           }
     });
                                                                             
