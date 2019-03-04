@@ -58,8 +58,9 @@ $(document).ready(function(){
             //alert(data);
             console.log(data);
             
-            $("#resultado").empty();
-            $("#resultado").text(data);
+            $("#poner").append(data);
+            //$("#resultado").empty();
+            //$("#resultado").text(data);
           }
     });
                                                                             

@@ -13,7 +13,20 @@
               if($contra=="12345"){
                 //alert("Ingresar: Aceptado");
                   echo "Esta bien";
-                
+                  echo "<table border='2'";
+                  echo "<tr>";
+                  echo "<th>Mensaje</th>";
+                  echo "<th>Nuevo</th>";
+                  echo "</tr";
+                  echo "<tr>";
+                  echo "<td>";
+                  echo "Hola soy un mensaje";
+                  echo "</td>";
+                  echo "<td>";
+                  echo "Jose";
+                  echo "</td>";
+                  echo "</tr>";
+                  echo "</table";
               }else{
                 echo "Contrasenia mala";
               }
