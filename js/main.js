@@ -1,6 +1,6 @@
 $(document).ready(function(){  
   //Código del profe
-  $('#aplicarEliminacionEtiqueta').on('click', function (event) {
+  /*$('#aplicarEliminacionEtiqueta').on('click', function (event) {
     event.preventDefault();
       var valorEliminar= $('#valorAModificar').val();
       var data = new FormData();
@@ -28,7 +28,7 @@ $(document).ready(function(){
             alert ("Error");
           }                         }
       });
-  });
+  });*/
   //Fin Código del profe
 
 
@@ -50,32 +50,16 @@ $(document).ready(function(){
           type: "POST",
           url: "select.php",
           data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
-          dataType: "json",
-          beforeSend: function(){
-                //imagen de carga
-                //$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-          },
-          error: function(){
+          dataType: "html",
+          error: function(data){
             alert("error petición ajax");
           },
           success: function(data){   
             //alert(data);
-            if(data.status == "ok"){
-
-              $("#titulo").text("Bienvenido");
-              $("#titulo").css("text-align","center");
-              $("#texto").text("Su consulta ha sido exitosa");
-              $("#titlecontent").css("color", "#55C409");
-              $("#miimagen").attr("src","img/success.ico");
-              $("#logoutModal").modal();
-              setTimeout(function() {
-              $('#logoutModal').modal('hide');
-              window.location.href = "index.html"
-              }, 3000);  
-            }
-            console.log(data.result.Nombre);
+            console.log(data);
+            
             $("#resultado").empty();
-            $("#resultado").text(data.result.Nombre);
+            $("#resultado").text(data);
           }
     });
                                                                             
