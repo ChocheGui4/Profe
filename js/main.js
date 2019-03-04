@@ -1,13 +1,50 @@
 $(document).ready(function(){  
+  //Código del profe
+  $('#aplicarEliminacionEtiqueta').on('click', function (event) {
+    event.preventDefault();
+      var valorEliminar= $('#valorAModificar').val();
+      var data = new FormData();
+      data.append('valorEliminar',valorEliminar);
+      
+            
+      var url= "../php/transacciones.php";
+      $.ajax({
+        url: url,
+        type:'POST',
+        contentType: false,
+        data: data,
+        processData: false,
+        cache: false,
+        dataType: "json",
+        success: function(data)
+          {
+            if (data.tipo==1)
+            {
+            alert(data.msg);
+            }
+          },
+        error: function(data)
+          {
+            alert ("Error");
+          }                         }
+      });
+  });
+  //Fin Código del profe
+
+
+
+
+
+
   $('#Ingresar').click(function(){
     var texto1, texto2;
     texto1=$("#Email").val();
     texto2=$("#Password").val();
     
     
-                                                                 
+                  
+
     //hace la búsqueda
-    
     $.ajax({
 
           type: "POST",
