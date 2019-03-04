@@ -1,36 +1,41 @@
 $(document).ready(function(){  
-  //Código del profe
-  $('#aplicarEliminacionEtiqueta').on('click', function (event) {
-    event.preventDefault();
-      var valorEliminar= $('#valorAModificar').val();
-      var data = new FormData();
-      data.append('valorEliminar',valorEliminar);
-      
-            
-      var url= "../php/transacciones.php";
-      $.ajax({
-        url: url,
-        type:'POST',
-        contentType: false,
-        data: data,
-        processData: false,
-        cache: false,
-        dataType: "json",
-        success: function(data)
-          {
-            if (data.tipo==1)
-            {
-            alert(data.msg);
-            }
-          },
-        error: function(data)
-          {
-            alert ("Error");
-          }
-      });
+  //Buttons
+  
+  $("#insertar").click(function(){
+    $('#logoutModal').modal();
   });
-  //Fin Código del profe
 
+   $('#registrar').click(function(){
+    
+    
+                  
+
+    //hace la búsqueda
+    $.ajax({
+
+          type: "POST",
+          url: "insertar.php",
+          data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
+          dataType: "json",
+          error: function(){
+            alert("error petición ajax");
+          },
+          success: function(data){   
+            //alert(data);
+            if(data.status == "ok"){
+              console.log("Salio bien");
+            }else{
+              console.log("Salio mal");
+            }
+            console.log(data);
+            $("#resultado").empty();
+            $("#resultado").text(data);
+          }
+    });
+                                                                            
+                                                                     
+  });
+  //End buttons
 
 
 
@@ -70,7 +75,7 @@ $(document).ready(function(){
               $("#logoutModal").modal();
               setTimeout(function() {
               $('#logoutModal').modal('hide');
-              window.location.href = "index.html"
+              window.location.href = "buttons.html"
               }, 3000);  
             }
             console.log(data);
