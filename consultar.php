@@ -9,7 +9,7 @@
       {
             echo " <table class='table table-bordered table-striped' id='Tabla1'> <thead> <tr> <th>ID</th> <th>Nombre</th> <th>Nombre de usuario</th> <th>Password</th> <th></th> <th></th> </tr> </thead>";
             echo "<tbody>";
-            $contar=1;
+            
             while($row = mysqli_fetch_array($sql)) { 
                   
                   
@@ -18,11 +18,11 @@
                   echo "<td>".$row['Nombre']."</td>"; 
                   echo "<td>".$row['usuario']."</td>"; 
                   echo "<td>".$row['pass']."</td>"; 
-                  echo "<td><button type='button' name='anchors' id='b' class='btn btn-danger' >b</button></td>";
+                  echo "<td><button type='button' name='anchors' id='b' class='btn btn-danger' >Editar</button></td>";
                   echo "<td><input class='btn btn-warning' type='submit' id='c' value='Eliminar' /></td>";
                   echo "</tr>";
                   
-                  $contar=$contar+1;
+                  
             }
             echo "</tbody>";
             echo "</table>";

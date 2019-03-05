@@ -21,7 +21,27 @@
     
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <script>
+    function cons(){
+    $.ajax({
 
+          type: "GET",
+          url: "consultar.php",
+          dataType: "html",
+          error: function(){
+            alert("error petición ajax insertar");
+          },
+          success: function(data){   
+            //alert(data);
+            console.log("consulta")
+
+            $("#pushtable").empty();
+            $("#pushtable").append(data);
+
+          }
+    });
+  }
+  </script>
 </head>
 
 <body id="page-top">
@@ -359,9 +379,7 @@
                         <button type="button" id="consul" class="btn btn-danger">
                           <span class="glyphicon glyphicon-search"></span> Consultar
                         </button>
-                        <button type="button" id="quitar" class="btn btn-danger">
-                          <span class="glyphicon glyphicon-search"></span> quitar
-                        </button>
+                        
                       </div>
                       
 
@@ -419,7 +437,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content" id="titlecontent">
         <div class="modal-header">
-          <h5 class="modal-title" id="titulo" >Registro</h5>
+          <h5 class="modal-title" id="titulo" >CRUD</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
              
@@ -428,20 +446,33 @@
         <div class="modal-body">
           <form class="user" method="post" id="for1">
                     <div class="form-group">
-                        <label for="inputName">Nombre</label>
+                      <input type="text" class="form-control" name="id" id="ID" placeholder="Ingresa tu nombre"/>
+                        <label for="inputName" id="nom">Nombre</label>
                         <input type="text" class="form-control" name="Name" id="nombre" placeholder="Ingresa tu nombre"/>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail">Usuario</label>
+                        <label for="inputEmail" id="use">Usuario</label>
                         <input type="email" class="form-control"  name="User" id="usuario" placeholder="Ingresa tu nombre de usuario"/>
                     </div>
                     <div class="form-group">
-                        <label for="inputMessage">Contraseña</label>
+                        <label for="inputMessage" id="pas">Contraseña</label>
                         <textarea class="form-control" name="Pass" id="password" placeholder="Ingresa tu contraseña"></textarea>
                     </div>
-                    <a style="color: white;" class="btn btn-primary btn-user" id="registrar">
+                    
+                    <div align="Center">
+                       <a style="color: white;" class="btn btn-primary btn-user" id="registrar">
                       Registrar
                     </a>
+                    <a style="color: white;" class="btn btn-primary btn-user" id="actualizar">
+                      Actualizar
+                    </a>
+                    <a style="color: white;" class="btn btn-success" id="eliminar">
+                      ¿Estás seguro?
+                    </a>
+                    <a style="color: white;" class="btn btn-danger"  data-dismiss="modal"  id="cancel">
+                      Cancelar
+                    </a>
+                    </div>
                 </form>
           <div class="content">
             <div class="row">
@@ -457,7 +488,7 @@
           
           
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" id="footer">
           <button class="btn btn-danger" type="button" data-dismiss="modal" >Cancelar</button>
           
 

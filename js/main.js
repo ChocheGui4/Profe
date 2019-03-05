@@ -1,30 +1,155 @@
 $(document).ready(function(){  
   //Buttons
+  
   $('#Tabla1 tr').on('click', function(){
     var dato = $(this).find('td:first').html();
     $('#txtNombre').val(dato);
     console.log(dato);
   });
+
+  $("#eliminar").click(function(){
+    
+    console.log("Entro a eliminar");
+    
+    $.ajax({
+
+          type: "POST",
+          url: "eliminar.php",
+          data:$("#for1").serialize(),
+          dataType: "json",
+          error: function(){
+            alert("error petición ajax insertar");
+          },
+          success: function(data){   
+            //alert(data);
+
+            if(data.status == "ok"){
+              cons();
+              console.log("se eliminó");
+              $("#logoutModal").modal('hide');
+              $("#nombre").val("");
+              $("#usuario").val("");
+              $("#password").val("");
+            }else{
+              console.log("Salio mal");
+            }
+            console.log(data);
+            $("#resultado").empty();
+            $("#resultado").text(data);
+          }
+    });
+  });
+
+  $("#actualizar").click(function(){
+    
+    console.log("Entro a actualizar");
+    
+    $.ajax({
+
+          type: "POST",
+          url: "actualizar.php",
+          data:$("#for1").serialize(),
+          dataType: "json",
+          error: function(){
+            alert("error petición ajax insertar");
+          },
+          success: function(data){   
+            //alert(data);
+
+            if(data.status == "ok"){
+              cons();
+              console.log("se actualizó");
+              $("#logoutModal").modal('hide');
+              $("#nombre").val("");
+              $("#usuario").val("");
+              $("#password").val("");
+            }else{
+              console.log("Salio mal");
+            }
+            console.log(data);
+            $("#resultado").empty();
+            $("#resultado").text(data);
+          }
+    });
+  });
+  function sh(){
+    $("#nom").show();
+    $("#nombre").show();
+    $("#usuario").show();
+    $("#password").show();
+    $("#use").show();
+    $("#pas").show();
+    $("#footer").show();
+  }
   $("#insertar").click(function(){
+    //Ocultar elementos
+    sh();
+
+    $("#nombre").val("");
+    $("#usuario").val("");
+    $("#password").val("");
+    //fin ocultar
+    $("#ID").hide();
+    $("#eliminar").hide();
+    $("#cancel").hide();
+    $("#actualizar").hide();
+
+    $("#registrar").show();
+
     $('#logoutModal').modal();
   });
 
   $('#pushtable').on('click','#Tabla1 tr',function(){
-    var dato = $(this).find('td:first').html();
-    console.log(dato);
+    var global_id = $(this).find('td:first').html();
+    var dato1 = $(this).find('td:nth-child(2)').html();
+    var dato2 = $(this).find('td:nth-child(3)').html();
+    var dato3 = $(this).find('td:nth-child(4)').html();
+    console.log(global_id);
+    console.log(dato1);
+    console.log(dato2);
+    console.log(dato3);
+    
+    $('#ID').val(global_id);
+    $('#nombre').val(dato1);
+    $('#usuario').val(dato2);
+    $('#password').val(dato3);
+    
   });
   $('#pushtable').on('click','#b',function(){
-    var dato = $(this).find('td:first').html();
-    console.log(dato);
-  });
+    sh();
+    
+    $("#ID").hide();
+    $("#eliminar").hide();
+    $("#cancel").hide();
+    $("#actualizar").show();
+    $("#registrar").hide();
+    
 
+    
+    $('#logoutModal').modal();
+  });
 
   $('#pushtable').on('click','#c',function(){
-    alert('hola c');                                                                     
+    //Ocultar elementos
+    $("#nom").hide();
+    $("#nombre").hide();
+    $("#usuario").hide();
+    $("#password").hide();
+    $("#use").hide();
+    $("#pas").hide();
+    $("#footer").hide();
+    //fin ocultar
+    
+    $("#ID").hide();
+    $("#eliminar").show();
+    $("#cancel").show();
+    $("#actualizar").hide();
+    $("#registrar").hide();
+    
+
+    
+    $('#logoutModal').modal();
   });
-
-
-
 
 
   $('#consul').click(function(){
@@ -61,11 +186,7 @@ $(document).ready(function(){
   }
   $('#registrar').click(function(){
     
-    
-                  
-
-    //hace la búsqueda
-
+    console.log("Entro a insertar");
     $.ajax({
 
           type: "POST",
