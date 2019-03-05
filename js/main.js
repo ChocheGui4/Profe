@@ -1,17 +1,31 @@
 $(document).ready(function(){  
   //Buttons
-  
+  $('#Tabla1 tr').on('click', function(){
+    var dato = $(this).find('td:first').html();
+    $('#txtNombre').val(dato);
+    console.log(dato);
+  });
   $("#insertar").click(function(){
     $('#logoutModal').modal();
   });
 
-
-  $("#b1").click(function(){
-    
-    console.log("Presionó el botón 1");
-                                                                            
-                                                                     
+  $('#pushtable').on('click','#Tabla1 tr',function(){
+    var dato = $(this).find('td:first').html();
+    console.log(dato);
   });
+  $('#pushtable').on('click','#b',function(){
+    var dato = $(this).find('td:first').html();
+    console.log(dato);
+  });
+
+
+  $('#pushtable').on('click','#c',function(){
+    alert('hola c');                                                                     
+  });
+
+
+
+
 
   $('#consul').click(function(){
     
@@ -20,6 +34,9 @@ $(document).ready(function(){
 
     //hace la búsqueda
     cons();
+    var x = document.getElementsByName("anchors")[0].id;
+    console.log(x);
+    
                                                                             
                                                                      
   });
@@ -35,8 +52,10 @@ $(document).ready(function(){
           success: function(data){   
             //alert(data);
             console.log("consulta")
+
             $("#pushtable").empty();
             $("#pushtable").append(data);
+
           }
     });
   }
