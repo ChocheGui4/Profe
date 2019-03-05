@@ -5,12 +5,48 @@ $(document).ready(function(){
     $('#logoutModal').modal();
   });
 
-   $('#registrar').click(function(){
+
+  $("#b1").click(function(){
+    
+    console.log("Presionó el botón 1");
+                                                                            
+                                                                     
+  });
+
+  $('#consul').click(function(){
     
     
                   
 
     //hace la búsqueda
+    cons();
+                                                                            
+                                                                     
+  });
+  function cons(){
+    $.ajax({
+
+          type: "GET",
+          url: "consultar.php",
+          dataType: "html",
+          error: function(){
+            alert("error petición ajax insertar");
+          },
+          success: function(data){   
+            //alert(data);
+            console.log("consulta")
+            $("#pushtable").empty();
+            $("#pushtable").append(data);
+          }
+    });
+  }
+  $('#registrar').click(function(){
+    
+    
+                  
+
+    //hace la búsqueda
+
     $.ajax({
 
           type: "POST",
@@ -23,7 +59,12 @@ $(document).ready(function(){
           success: function(data){   
             //alert(data);
             if(data.status == "ok"){
+              cons();
               console.log("Salio bien");
+              $("#logoutModal").modal('hide');
+              $("#nombre").val("");
+              $("#usuario").val("");
+              $("#password").val("");
             }else{
               console.log("Salio mal");
             }
