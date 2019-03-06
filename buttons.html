@@ -372,12 +372,12 @@
                     <div class="row">
                       <div class="col-lg-3">
                         <button type="button" class="btn btn-success" id="insertar">
-                          <span class="glyphicon glyphicon-search"></span> Insertar
+                          <img src="img/search.ico"> Insertar
                         </button>
                       </div>
                       <div class="col-lg-6">
                         <button type="button" id="consul" class="btn btn-danger">
-                          <span class="glyphicon glyphicon-search"></span> Consultar
+                          <img src="img/table.ico"> Consultar
                         </button>
                         
                       </div>
@@ -467,26 +467,30 @@
         <div class="modal-body">
           <form class="user" method="post" id="for1">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="id" id="ID" placeholder="Ingresa tu nombre"/>
+                      <input type="text" class="form-control" name="id" id="ID" placeholder="Ejemplo: Alejandro"/>
                         <label for="inputName" id="nom">Nombre</label>
-                        <input type="text" class="form-control" name="Name" id="nombre" placeholder="Ingresa tu nombre"/>
+                        <input type="text" class="form-control" name="Name" id="nombre" placeholder="Ejemplo: Alejandro"/>
+                        <label style="color: red;" id="patnom"></label>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail" id="use">Usuario</label>
-                        <input type="email" class="form-control"  name="User" id="usuario" placeholder="Ingresa tu nombre de usuario"/>
+                        <input type="text" class="form-control"  name="User" id="usuario" placeholder="Ejemplo: Ale23_@1"/>
+                        <label style="color: red;" id="patusu"></label>
                     </div>
                     <div class="form-group">
                         <label for="inputMessage" id="pas">Contraseña</label>
-                        <textarea class="form-control" name="Pass" id="password" placeholder="Ingresa tu contraseña"></textarea>
+                        <input type="text" class="form-control" name="Pass" id="password" placeholder="Hol@mundo1"/>
+                        <label style="color: red;" id="patpas"></label>
                     </div>
                     
                     <div align="Center">
-                       <a style="color: white;" class="btn btn-primary btn-user" id="registrar">
-                      Registrar
-                    </a>
-                    <a style="color: white;" class="btn btn-primary btn-user" id="actualizar">
-                      Actualizar
-                    </a>
+                      <button type="button" class="btn btn-primary btn-user" id="registrar">
+                        Registrar
+                      </button>
+                       <button type="button" class="btn btn-primary btn-user" id="actualizar">
+                        Actualizar
+                      </button>
+                    
                     <a style="color: white;" class="btn btn-success" id="eliminar">
                       ¿Estás seguro?
                     </a>
@@ -569,6 +573,7 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
+
   <script src="js/sb-admin-2.min.js"></script>
   <script src="js/main.js"></script>
 

@@ -39,38 +39,91 @@ $(document).ready(function(){
           }
     });
   });
+  $("#nombre").on("keyup", function() {
+    
+    var texto1=$("#nombre").val();
+    
+    var reg1=/([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
+    
+    if (!texto1.match(reg1)) {
+      console.log("Nada");
+      $("#patnom").text("Ingrese bien su nombre");
+    }else{
+      console.log("Ya quedó");
+      $("#patnom").text("");
+    }
+  });
+  $("#usuario").on("keyup", function() {
+    
+    var texto1=$("#usuario").val();
+    
+    var reg1=/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,15}$/;
+    
+    if (!texto1.match(reg1)) {
+      console.log("Nada");
+      $("#patusu").text("Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito, no se admiten otros caracteres");
+    }else{
+      console.log("Ya quedó");
+      $("#patusu").text("");
+    }
+  });
+  $("#password").on("keyup", function() {
+    
+    var texto1=$("#password").val();
+    
+    var reg1=/^((?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,20})|((?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,40})$/;
+    
+    if (!texto1.match(reg1)) {
+      console.log("Nada");
+      $("#patpas").text("Ingresa al menos: 1 mayúscula, 1 minúscula, 1 dígito y un caracter especial");
+    }else{
+      console.log("Ya quedó");
+      $("#patpas").text("");
+    }
+  });
+
 
   $("#actualizar").click(function(){
     
+    var texto1, texto2,texto3;
+    texto1=$("#nombre").val();
+    texto2=$("#usuario").val();
+    texto3=$("#password").val();
+    var reg1=/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
+    var reg2=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){5,20}/;
+    var reg3=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){8,50}/;
+    if (!texto1.match(reg1)|!texto2.match(reg2)|!texto3.match(reg3)) {
+      console.log("Nada");
+    }else{
     
-    
-    $.ajax({
+      $.ajax({
 
-          type: "POST",
-          url: "actualizar.php",
-          data:$("#for1").serialize(),
-          dataType: "json",
-          error: function(){
-            alert("error petición ajax insertar");
-          },
-          success: function(data){   
-            //alert(data);
+            type: "POST",
+            url: "actualizar.php",
+            data:$("#for1").serialize(),
+            dataType: "json",
+            error: function(){
+              alert("error petición ajax insertar");
+            },
+            success: function(data){   
+              //alert(data);
 
-            if(data.status == "ok"){
-              cons();
-              console.log("se actualizó");
-              $("#logoutModal").modal('hide');
-              $("#nombre").val("");
-              $("#usuario").val("");
-              $("#password").val("");
-            }else{
-              console.log("Salio mal");
+              if(data.status == "ok"){
+                cons();
+                console.log("se actualizó");
+                $("#logoutModal").modal('hide');
+                $("#nombre").val("");
+                $("#usuario").val("");
+                $("#password").val("");
+              }else{
+                console.log("Salio mal");
+              }
+              console.log(data);
+              $("#resultado").empty();
+              $("#resultado").text(data);
             }
-            console.log(data);
-            $("#resultado").empty();
-            $("#resultado").text(data);
-          }
-    });
+      });
+    }
   });
   function sh(){
     $("#nom").show();
@@ -165,33 +218,42 @@ $(document).ready(function(){
   }
 
   $('#registrar').click(function(){
-    
-    console.log("Entro a insertar");
-    $.ajax({
-          type: "POST",
-          url: "insertar.php",
-          data: $("#for1").serialize(),/*"correo="+texto1+"pass="+texto2,*/
-          dataType: "json",
-          error: function(){
-            alert("error petición ajax insertar");
-          },
-          success: function(data){   
-            //alert(data);
-            if(data.status == "ok"){
-              cons();
-              $("#logoutModal").modal('hide');
-              $("#nombre").val("");
-              $("#usuario").val("");
-              $("#password").val("");
-            }else{
-              console.log("Salio mal");
+    var texto1, texto2,texto3;
+    texto1=$("#nombre").val();
+    texto2=$("#usuario").val();
+    texto3=$("#password").val();
+    var reg1=/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
+    var reg2=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){5,20}/;
+    var reg3=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){8,50}/;
+    if (!texto1.match(reg1)|!texto2.match(reg2)|!texto3.match(reg3)) {
+      console.log("Nada");
+    }else{
+      console.log("Entro a insertar");
+      $.ajax({
+            type: "POST",
+            url: "insertar.php",
+            data: $("#for1").serialize(),/*"correo="+texto1+"pass="+texto2,*/
+            dataType: "json",
+            error: function(){
+              alert("error petición ajax insertar");
+            },
+            success: function(data){   
+              //alert(data);
+              if(data.status == "ok"){
+                cons();
+                $("#logoutModal").modal('hide');
+                $("#nombre").val("");
+                $("#usuario").val("");
+                $("#password").val("");
+              }else{
+                console.log("Salio mal");
+              }
+              
+              $("#resultado").empty();
+              $("#resultado").text(data);
             }
-            
-            $("#resultado").empty();
-            $("#resultado").text(data);
-          }
-    });
-                                                                            
+      });
+    }                                                                      
                                                                      
   });
   //End buttons

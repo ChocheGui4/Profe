@@ -18,8 +18,9 @@
                   echo "<td>".$row['Nombre']."</td>"; 
                   echo "<td>".$row['usuario']."</td>"; 
                   echo "<td>".$contrades."</td>"; 
-                  echo "<td><button type='button' name='anchors' id='b' class='btn btn-danger' >Editar</button></td>";
-                  echo "<td><input class='btn btn-warning' type='submit' id='c' value='Eliminar' /></td>";
+                  echo "<td><button type='button' name='anchors' id='b' class='btn btn-danger' ><img src='img/edit.ico'>Editar</button></td>";
+                  echo "<td><button type='button' name='anchors' id='c' class='btn btn-warning' ><img src='img/delete.ico'>Eliminar</button></td>";
+                  
                   echo "</tr>";
                   
                   
