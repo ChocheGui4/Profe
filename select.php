@@ -2,10 +2,11 @@
       include("conexion.php");
       error_reporting(E_ALL ^ E_NOTICE);
       $usuario = $_POST['correo'];
-      $contra  = $_POST['pass'];
+      $ps  = $_POST['pass'];
       
       
-      if(isset($usuario) && !empty($usuario) && isset($contra) && !empty($contra)) {
+      if(isset($usuario) && !empty($usuario) && isset($ps) && !empty($ps)) {
+            $contra = encrypt_decrypt('encrypt', $ps);
             $sql = mysqli_query($conn,"SELECT * FROM usuarios WHERE usuario = '$usuario' AND pass = '$contra' ");
             $data = array();
             
@@ -17,7 +18,7 @@
                   
                   
                   $data['status'] = 'no';
-                  $data['result'] = $userData;
+                  $data['result'] = '0';
                   echo json_encode($data);
 
             }else{

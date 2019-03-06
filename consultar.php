@@ -12,12 +12,12 @@
             
             while($row = mysqli_fetch_array($sql)) { 
                   
-                  
+                  $contrades = encrypt_decrypt('decrypt', $row['pass']);
                   echo "<tr>"; 
                   echo "<td>".$row['id']."</td>"; 
                   echo "<td>".$row['Nombre']."</td>"; 
                   echo "<td>".$row['usuario']."</td>"; 
-                  echo "<td>".$row['pass']."</td>"; 
+                  echo "<td>".$contrades."</td>"; 
                   echo "<td><button type='button' name='anchors' id='b' class='btn btn-danger' >Editar</button></td>";
                   echo "<td><input class='btn btn-warning' type='submit' id='c' value='Eliminar' /></td>";
                   echo "</tr>";

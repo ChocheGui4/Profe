@@ -42,7 +42,7 @@ $(document).ready(function(){
 
   $("#actualizar").click(function(){
     
-    console.log("Entro a actualizar");
+    
     
     $.ajax({
 
@@ -104,10 +104,7 @@ $(document).ready(function(){
     var dato1 = $(this).find('td:nth-child(2)').html();
     var dato2 = $(this).find('td:nth-child(3)').html();
     var dato3 = $(this).find('td:nth-child(4)').html();
-    console.log(global_id);
-    console.log(dato1);
-    console.log(dato2);
-    console.log(dato3);
+    
     
     $('#ID').val(global_id);
     $('#nombre').val(dato1);
@@ -115,17 +112,14 @@ $(document).ready(function(){
     $('#password').val(dato3);
     
   });
+
   $('#pushtable').on('click','#b',function(){
     sh();
-    
     $("#ID").hide();
     $("#eliminar").hide();
     $("#cancel").hide();
     $("#actualizar").show();
     $("#registrar").hide();
-    
-
-    
     $('#logoutModal').modal();
   });
 
@@ -145,29 +139,17 @@ $(document).ready(function(){
     $("#cancel").show();
     $("#actualizar").hide();
     $("#registrar").hide();
-    
-
-    
     $('#logoutModal').modal();
   });
 
 
   $('#consul').click(function(){
-    
-    
-                  
-
     //hace la búsqueda
-    cons();
-    var x = document.getElementsByName("anchors")[0].id;
-    console.log(x);
-    
-                                                                            
-                                                                     
+    cons();                                                              
   });
+
   function cons(){
     $.ajax({
-
           type: "GET",
           url: "consultar.php",
           dataType: "html",
@@ -176,19 +158,16 @@ $(document).ready(function(){
           },
           success: function(data){   
             //alert(data);
-            console.log("consulta")
-
             $("#pushtable").empty();
             $("#pushtable").append(data);
-
           }
     });
   }
+
   $('#registrar').click(function(){
     
     console.log("Entro a insertar");
     $.ajax({
-
           type: "POST",
           url: "insertar.php",
           data: $("#for1").serialize(),/*"correo="+texto1+"pass="+texto2,*/
@@ -200,7 +179,6 @@ $(document).ready(function(){
             //alert(data);
             if(data.status == "ok"){
               cons();
-              console.log(data);
               $("#logoutModal").modal('hide');
               $("#nombre").val("");
               $("#usuario").val("");
@@ -208,7 +186,7 @@ $(document).ready(function(){
             }else{
               console.log("Salio mal");
             }
-            console.log(data);
+            
             $("#resultado").empty();
             $("#resultado").text(data);
           }
@@ -218,53 +196,49 @@ $(document).ready(function(){
   });
   //End buttons
 
-
-
-
-
   $('#Ingresar').click(function(){
     var texto1, texto2;
     texto1=$("#Email").val();
     texto2=$("#Password").val();
-    
-    
-                  
-
+    if(texto1==""| texto2==""){
+      modal("Atención","Llene los datos correspondientes y no deje ninguno vacío","#F50768","img/warning.ico");
+    }else{
     //hace la búsqueda
-    $.ajax({
+      $.ajax({
 
-          type: "POST",
-          url: "select.php",
-          data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
-          dataType: "json",
-          beforeSend: function(){
-                //imagen de carga
-                //$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-          },
-          error: function(){
-            alert("error petición ajax formulario");
-          },
-          success: function(data){   
-            //alert(data);
-            if(data.status == "ok"){
+            type: "POST",
+            url: "select.php",
+            data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
+            dataType: "json",
+            beforeSend: function(){
+                  //imagen de carga
+                  //$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
+            },
+            error: function(){
+              alert("error petición ajax formulario");
+            },
+            success: function(data){   
+              //alert(data);
+              if(data.status == "ok"){
 
-              $("#titulo").text("Bienvenido");
-              $("#titulo").css("text-align","center");
-              $("#texto").text("Su consulta ha sido exitosa");
-              $("#titlecontent").css("color", "#55C409");
-              $("#miimagen").attr("src","img/success.ico");
-              $("#logoutModal").modal();
-              setTimeout(function() {
-              $('#logoutModal').modal('hide');
-              window.location.href = "buttons.html"
-              }, 3000);  
+                $("#titulo").text("Bienvenido");
+                $("#titulo").css("text-align","center");
+                $("#texto").text("Su consulta ha sido exitosa");
+                $("#titlecontent").css("color", "#55C409");
+                $("#miimagen").attr("src","img/success.ico");
+                $("#logoutModal").modal();
+                setTimeout(function() {
+                $('#logoutModal').modal('hide');
+                window.location.href = "buttons.html"
+                }, 3000);  
+              }else if(data.result==0){
+                modal("Denegado","Revisa tus datos de usuario","#F12A02","img/user.ico");
+              }
+              
+              
             }
-            console.log(data);
-            $("#resultado").empty();
-            $("#resultado").text(data);
-          }
-    });
-                                                                            
+      });
+    }                                                                    
                                                                      
   });
   /*$('#Ingresar').on('click',function(){
@@ -297,10 +271,10 @@ $(document).ready(function(){
           limpiar();
         }
         
-      }else{
-        modal("Denegado","Revisa tu nombre de usuario","#F12A02","img/user.ico");
-        limpiar();
-      }
+        }else{
+          modal("Denegado","Revisa tu nombre de usuario","#F12A02","img/user.ico");
+          limpiar();
+        }
     }
   });
 
