@@ -200,7 +200,7 @@ $(document).ready(function(){
             //alert(data);
             if(data.status == "ok"){
               cons();
-              console.log("Salio bien");
+              console.log(data);
               $("#logoutModal").modal('hide');
               $("#nombre").val("");
               $("#usuario").val("");
