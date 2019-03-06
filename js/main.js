@@ -61,7 +61,8 @@ $(document).ready(function(){
     
     if (!texto1.match(reg1)) {
       console.log("Nada");
-      $("#patusu").text("Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito, no se admiten otros caracteres");
+      $("#patusu").text("Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
+        "no se admiten otros caracteres (de 5-15 caracteres)");
     }else{
       console.log("Ya quedó");
       $("#patusu").text("");
@@ -71,11 +72,12 @@ $(document).ready(function(){
     
     var texto1=$("#password").val();
     
-    var reg1=/^((?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,20})|((?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,40})$/;
+    var reg1=/^((?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,40})|((?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,40})$/;
     
     if (!texto1.match(reg1)) {
       console.log("Nada");
-      $("#patpas").text("Ingresa al menos: 1 mayúscula, 1 minúscula, 1 dígito y un caracter especial");
+      $("#patpas").text("Ingresa al menos: 1 mayúscula, 1 minúscula, 1 dígito y un caracter especial** opcional"+
+        " (de 8-40 caracteres)");
     }else{
       console.log("Ya quedó");
       $("#patpas").text("");
