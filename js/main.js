@@ -27,9 +27,7 @@ $(document).ready(function(){
               cons();
               console.log("se eliminó");
               $("#logoutModal").modal('hide');
-              $("#nombre").val("");
-              $("#usuario").val("");
-              $("#password").val("");
+              limpiarinp();
             }else{
               console.log("Salio mal");
             }
@@ -46,7 +44,8 @@ $(document).ready(function(){
     
     if (!texto1.match(reg1)) {
       console.log("Nada");
-      $("#patnom").text("Ingrese bien su nombre");
+      
+      labelmessage("#patnom","Ingrese bien su nombre");
     }else{
       console.log("Ya quedó");
       $("#patnom").text("");
@@ -60,8 +59,8 @@ $(document).ready(function(){
     
     if (!texto1.match(reg1)) {
       console.log("Nada");
-      $("#patusu").text("Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
-        " no se admiten otros caracteres (de 5-15 caracteres)");
+      labelmessage("#patusu","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
+        " además puedes ocupar otros caracteres (de 5-15 caracteres)");
     }else{
       console.log("Ya quedó");
       $("#patusu").text("");
@@ -75,14 +74,18 @@ $(document).ready(function(){
     
     if (!texto1.match(reg1)) {
       console.log("Nada");
-      $("#patpas").text("Ingresa al menos: 1 mayúscula, 1 minúscula, 1 dígito y un caracter especial** opcional"+
+      var hola="#patpas";
+      
+      labelmessage("#patpas","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,además puedes ocupar otros caracteres"+
         " (de 8-40 caracteres)");
     }else{
       console.log("Ya quedó");
       $("#patpas").text("");
     }
   });
-
+  function labelmessage(dato,texto){
+    $(dato).text(texto);
+  }
 
   $("#actualizar").click(function(){
     
@@ -113,9 +116,7 @@ $(document).ready(function(){
                 cons();
                 console.log("se actualizó");
                 $("#logoutModal").modal('hide');
-                $("#nombre").val("");
-                $("#usuario").val("");
-                $("#password").val("");
+                limpiarinp();
               }else{
                 console.log("Salio mal");
               }
@@ -133,10 +134,24 @@ $(document).ready(function(){
     $("#password").show();
     $("#use").show();
     $("#pas").show();
+    $("#patnom").show();
+    $("#patusu").show();
+    $("#patpas").show();
     $("#footer").show();
+  }
+  function limpiarinp(){
+    $("#nombre").val("");
+    $("#usuario").val("");
+    $("#password").val("");
+  }
+  function limpiarlabel(){
+    $("#patnom").text("");
+    $("#patusu").text("");
+    $("#patpas").text("");
   }
   $("#insertar").click(function(){
     //Ocultar elementos
+    limpiarlabel();
     sh();
 
     $("#nombre").val("");
@@ -168,6 +183,7 @@ $(document).ready(function(){
   });
 
   $('#pushtable').on('click','#b',function(){
+    limpiarlabel();
     sh();
     $("#ID").hide();
     $("#eliminar").hide();
@@ -183,6 +199,9 @@ $(document).ready(function(){
     $("#nombre").hide();
     $("#usuario").hide();
     $("#password").hide();
+    $("#patnom").hide();
+    $("#patusu").hide();
+    $("#patpas").hide();
     $("#use").hide();
     $("#pas").hide();
     $("#footer").hide();
@@ -226,7 +245,11 @@ $(document).ready(function(){
     var reg2=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){5,20}/;
     var reg3=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){8,50}/;
     if (!texto1.match(reg1)|!texto2.match(reg2)|!texto3.match(reg3)) {
-      console.log("Nada");
+      labelmessage("#patnom","Ingrese bien su nombre");
+      labelmessage("#patusu","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
+        " además puedes ocupar otros caracteres (de 5-15 caracteres)");
+      labelmessage("#patpas","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,además puedes ocupar otros caracteres"+
+        " (de 8-40 caracteres)");
     }else{
       $.ajax({
             type: "POST",
