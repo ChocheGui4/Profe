@@ -42,7 +42,6 @@ $(document).ready(function(){
   $("#nombre").on("keyup", function() {
     
     var texto1=$("#nombre").val();
-    
     var reg1=/([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
     
     if (!texto1.match(reg1)) {
@@ -62,7 +61,7 @@ $(document).ready(function(){
     if (!texto1.match(reg1)) {
       console.log("Nada");
       $("#patusu").text("Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
-        "no se admiten otros caracteres (de 5-15 caracteres)");
+        " no se admiten otros caracteres (de 5-15 caracteres)");
     }else{
       console.log("Ya quedó");
       $("#patusu").text("");
@@ -212,7 +211,6 @@ $(document).ready(function(){
             alert("error petición ajax insertar");
           },
           success: function(data){   
-            //alert(data);
             $("#pushtable").empty();
             $("#pushtable").append(data);
           }
@@ -230,7 +228,6 @@ $(document).ready(function(){
     if (!texto1.match(reg1)|!texto2.match(reg2)|!texto3.match(reg3)) {
       console.log("Nada");
     }else{
-      console.log("Entro a insertar");
       $.ajax({
             type: "POST",
             url: "insertar.php",
@@ -274,10 +271,6 @@ $(document).ready(function(){
             url: "select.php",
             data: $("#formulario").serialize(),/*"correo="+texto1+"pass="+texto2,*/
             dataType: "json",
-            beforeSend: function(){
-                  //imagen de carga
-                  //$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-            },
             error: function(){
               alert("error petición ajax formulario");
             },
