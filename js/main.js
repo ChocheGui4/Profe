@@ -93,9 +93,9 @@ $(document).ready(function(){
     texto1=$("#nombre").val();
     texto2=$("#usuario").val();
     texto3=$("#password").val();
-    var reg1=/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
-    var reg2=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){5,20}/;
-    var reg3=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){8,50}/;
+    var reg1=/([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
+    var reg2=/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,15}$/;
+    var reg3=/^((?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,40})|((?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,40})$/;
     if (!texto1.match(reg1)|!texto2.match(reg2)|!texto3.match(reg3)) {
       console.log("Nada");
     }else{
@@ -241,16 +241,45 @@ $(document).ready(function(){
     texto1=$("#nombre").val();
     texto2=$("#usuario").val();
     texto3=$("#password").val();
-    var reg1=/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
-    var reg2=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){5,20}/;
-    var reg3=/([a-zA-Z0-9.!#$%@&’*+/=?^_`{|}~-]){8,50}/;
-    if (!texto1.match(reg1)|!texto2.match(reg2)|!texto3.match(reg3)) {
+    console.log(texto1);
+    console.log(texto2);
+    console.log(texto3);
+
+    var reg1=/([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
+    var reg2=/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,15}$/;
+    var reg3=/^((?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,40})|((?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,40})$/;
+    if (!texto1.match(reg1) & !texto2.match(reg2) & !texto3.match(reg3)) {
       labelmessage("#patnom","Ingrese bien su nombre");
       labelmessage("#patusu","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
         " además puedes ocupar otros caracteres (de 5-15 caracteres)");
       labelmessage("#patpas","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,además puedes ocupar otros caracteres"+
         " (de 8-40 caracteres)");
-    }else{
+    }else if (!texto1.match(reg1)) {
+      labelmessage("#patnom","Ingrese bien su nombre");
+      
+    }else if (!texto2.match(reg2)) {
+      
+      labelmessage("#patusu","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
+        " además puedes ocupar otros caracteres (de 5-15 caracteres)");
+      
+    }else if (!texto3.match(reg3)) {
+      
+      labelmessage("#patpas","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,además puedes ocupar otros caracteres"+
+        " (de 8-40 caracteres)");
+    }else if (!texto1.match(reg1) && !texto2.match(reg2)  ) {
+      labelmessage("#patnom","Ingrese bien su nombre");
+      labelmessage("#patusu","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
+        " además puedes ocupar otros caracteres (de 5-15 caracteres)");
+    }else if (!texto1.match(reg1) && !texto3.match(reg3)  ) {
+      labelmessage("#patnom","Ingrese bien su nombre");
+      labelmessage("#patpas","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,además puedes ocupar otros caracteres"+
+        " (de 8-40 caracteres)");
+    }else if (!texto2.match(reg2) && !texto3.match(reg3)  ) {
+      labelmessage("#patusu","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
+        " además puedes ocupar otros caracteres (de 5-15 caracteres)");
+      labelmessage("#patpas","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,además puedes ocupar otros caracteres"+
+        " (de 8-40 caracteres)");
+    }else {
       $.ajax({
             type: "POST",
             url: "insertar.php",
