@@ -18,14 +18,14 @@ $(document).ready(function(){
           data:$("#for1").serialize(),
           dataType: "json",
           error: function(){
-            alert("error petición ajax insertar");
+            alert("error petición ajax elimiar");
           },
           success: function(data){   
             //alert(data);
 
             if(data.status == "ok"){
               cons();
-              console.log("se eliminó");
+              console.log("se eliminóx");
               $("#logoutModal").modal('hide');
               limpiarinp();
             }else{
@@ -43,11 +43,11 @@ $(document).ready(function(){
     var reg1=/([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
     
     if (!texto1.match(reg1)) {
-      console.log("Nada");
+      //console.log("Nada");
       
       labelmessage("#patnom","Ingrese bien su nombre");
     }else{
-      console.log("Ya quedó");
+      //console.log("Ya quedó");
       $("#patnom").text("");
     }
   });
@@ -58,11 +58,11 @@ $(document).ready(function(){
     var reg1=/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,15}$/;
     
     if (!texto1.match(reg1)) {
-      console.log("Nada");
+      //console.log("Nada");
       labelmessage("#patusu","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,"+
         " además puedes ocupar otros caracteres (de 5-15 caracteres)");
     }else{
-      console.log("Ya quedó");
+      //console.log("Ya quedó");
       $("#patusu").text("");
     }
   });
@@ -73,13 +73,13 @@ $(document).ready(function(){
     var reg1=/^((?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,40})|((?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,40})$/;
     
     if (!texto1.match(reg1)) {
-      console.log("Nada");
+      //console.log("Nada");
       var hola="#patpas";
       
       labelmessage("#patpas","Ingresa al menos: 1 mayúscula, 1 minúscula y 1 dígito,además puedes ocupar otros caracteres"+
         " (de 8-40 caracteres)");
     }else{
-      console.log("Ya quedó");
+      //console.log("Ya quedó");
       $("#patpas").text("");
     }
   });
@@ -241,9 +241,7 @@ $(document).ready(function(){
     texto1=$("#nombre").val();
     texto2=$("#usuario").val();
     texto3=$("#password").val();
-    console.log(texto1);
-    console.log(texto2);
-    console.log(texto3);
+    
 
     var reg1=/([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/;
     var reg2=/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,15}$/;
@@ -339,7 +337,7 @@ $(document).ready(function(){
                 setTimeout(function() {
                 $('#logoutModal').modal('hide');
                 window.location.href = "buttons.html"
-                }, 3000);  
+                }, 1500);  
               }else if(data.result==0){
                 modal("Denegado","Revisa tus datos de usuario","#F12A02","img/user.ico");
               }
